@@ -194,6 +194,7 @@ button:hover {
   border-bottom-right-radius: 10px;
   backdrop-filter: blur(12px);
   box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+  z-index: 10;
 }
 
 .nav__expand {
