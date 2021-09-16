@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/nav.js" defer></script>
+    <script src="js/form.js" defer></script>
+    <title>Form Page</title>
+  </head>
+  <body>
+    <!-- Header -->
+    <div class="header">
+      <header>
+        <a href="index.html"
+          ><img
+            src="https://cdn.pixabay.com/photo/2013/07/12/17/45/rubiks-cube-152372_640.png"
+            alt="Logo"
+        /></a>
+        <a class="header__avatar">
+          <img
+            src="https://i.pinimg.com/736x/ce/b7/31/ceb731ddfc47f630168f1798a1c09e48.jpg"
+            alt="User Avatar"
+          />
+        </a>
+      </header>
+    </div>
+
+    <!-- Sidebar -->
+    <nav class="sidebar">
+      <svg
+        class="nav__expand"
+        viewBox="0 0 256 512"
+        width="100"
+        title="angle-right"
+      >
+        <path
+          d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"
+        />
+      </svg>
+      <ul class="sidebar__list">
+        <li class="sidebar__list-item">
+          <a href="form.html">
+            <span>Form</span>
+          </a>
+        </li>
+        <li class="sidebar__list-item">
+          <a href="cards.html">
+            <span>Cards</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Container -->
+    <div class="container">
+      <!-- Form -->
+      <form action="" class="form" id="form">
+        <div class="form__item">
+          <input
+            type="text"
+            id="company"
+            name="company"
+            placeholder="Company"
+            required
+          />
+        </div>
+        <div class="form__item">
+          <input
+            type="text"
+            id="firstName"
+            name="fname"
+            placeholder="First Name"
+            required
+          />
+        </div>
+        <div class="form__item">
+          <input
+            type="text"
+            id="lastName"
+            name="lname"
+            placeholder="Last Name"
+            required
+          />
+        </div>
+        <div class="form__item">
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="abc@xyz.com"
+            required
+          />
+        </div>
+
+        <div class="form__item">
+          <p>252 Training Session 2010</p>
+          <select name="dates" id="session">
+            <option value="01/02/2010">01/02/2010</option>
+            <option value="01/05/2010">01/05/2010</option>
+            <option value="01/08/2010">01/08/2010</option>
+            <option value="01/11/2010">01/11/2010</option>
+          </select>
+        </div>
+
+        <div class="form__item">
+          <p>Job Functions</p>
+
+          <label for="campaign" class="input-radio"
+            >Campaign Management
+            <input
+              type="radio"
+              id="campaign"
+              name="job-function"
+              value="Campaign Management"
+              checked
+            />
+            <span class="checkmark"></span>
+          </label>
+
+          <label for="CRM" class="input-radio"
+            >CRM Administration
+            <input
+              type="radio"
+              id="CRM"
+              name="job-function"
+              value="CRM Administration"
+            />
+            <span class="checkmark"></span>
+          </label>
+
+          <label for="email-dep" class="input-radio"
+            >Email Deployment
+            <input
+              type="radio"
+              id="email-dep"
+              name="job-function"
+              value="Email Deployment"
+            />
+            <span class="checkmark"></span>
+          </label>
+        </div>
+
+        <div class="form__item">
+          <textarea
+            name="exception"
+            id="exception"
+            cols="30"
+            rows="6"
+            placeholder="Exceptions Here"
+          ></textarea>
+          <button type="submit" id="modal-btn">Submit</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="modal">
+      <div class="modal__header">
+        <h4>Form Results</h4>
+        <div class="close-button" id="close-btn">&times;</div>
+      </div>
+      <div class="modal__body">
+        <ul class="modal__list"></ul>
+      </div>
+    </div>
+    <div class="overlay"></div>
+  </body>
+</html>
