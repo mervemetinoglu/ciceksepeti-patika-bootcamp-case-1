@@ -1,6 +1,5 @@
 // Form DOM values
 const form = document.getElementById("form");
-const overlay = document.querySelector(".overlay");
 const company = document.getElementById("company");
 const firstName = document.getElementById("firstName");
 const lastName = document.getElementById("lastName");
@@ -9,12 +8,13 @@ const session = document.getElementById("session");
 const exceptionTextarea = document.getElementById("exception");
 
 // Modal DOM values
-const openModalBtn = document.querySelector("#modal-btn");
+const modal = document.querySelector("#modal");
 const closeModalBtn = document.querySelector("#close-btn");
 const modalList = document.querySelector(".modal__list");
 const modalBody = document.querySelector(".modal__body");
+const overlay = document.querySelector(".overlay");
 
-let formValues = [];
+let formValues = {};
 
 form.addEventListener("submit", (e) => {
   const jobFunction = document.querySelector(
@@ -22,27 +22,18 @@ form.addEventListener("submit", (e) => {
   );
   e.preventDefault();
 
-  formValues.push(company.value);
-  formValues.push(firstName.value);
-  formValues.push(lastName.value);
-  formValues.push(email.value);
-  formValues.push(session.value);
-  formValues.push(jobFunction.value);
-  formValues.push(exceptionTextarea.value);
+  formValues["company"] = company.value;
+  formValues["firstName"] = firstName.value;
+  formValues["lastName"] = lastName.value;
+  formValues["email"] = email.value;
+  formValues["session"] = session.value;
+  formValues["jobFunction"] = jobFunction.value;
+  formValues["exception"] = exceptionTextarea.value;
 
   createModalListItem(formValues);
+  openModal(modal);
 
   form.reset();
-});
-
-openModalBtn.addEventListener("click", () => {
-  const modal = document.querySelector("#modal");
-  openModal(modal);
-});
-
-closeModalBtn.addEventListener("click", () => {
-  const modal = closeModalBtn.closest("#modal");
-  closeModal(modal);
 });
 
 function openModal(modal) {
@@ -55,13 +46,17 @@ function closeModal(modal) {
   if (modal == null) return;
   modal.classList.remove("active");
   overlay.classList.remove("active");
-
-  // Clear the list for modal body
-  formValues.length = 0;
 }
 
 function createModalListItem(formValues) {
-  const listItemString = formValues.map((item) => `<li>${item}</li>`).join("");
+  const listItemString = Object.keys(formValues)
+    .map((item) => `<li>${item} : ${formValues[item]}</li>`)
+    .join("");
+
   modalList.innerHTML = listItemString;
   modalBody.appendChild(modalList);
 }
+
+closeModalBtn.addEventListener("click", () => {
+  closeModal(modal);
+});
