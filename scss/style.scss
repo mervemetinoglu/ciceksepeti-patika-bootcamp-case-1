@@ -192,7 +192,8 @@
   margin-bottom: 40px;
   background: $form-grid-bg;
   border-radius: 10px;
-  box-shadow: rgba(102, 99, 69, 0.705) 0 8px 40px -16px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
+    rgba(0, 0, 0, 0.22) 0px 10px 10px;
 
   @include sm {
     margin-left: 20px;
@@ -274,11 +275,10 @@
 
 // Grid
 .grid {
-  width: 100%;
+  // width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  column-gap: 15px;
-  row-gap: 15px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
   padding: 0 2rem;
 }
 
@@ -339,11 +339,14 @@
   left: 50%;
   width: 500px;
   max-width: 80%;
+  max-height: 80%;
   transform: translate(-50%, -50%) scale(0);
   background-color: #a89157;
   border-radius: 10px;
   transition: 200ms ease-in-out;
   z-index: 50;
+  overflow-y: auto;
+  overflow-x: hidden;
 
   &.active {
     transform: translate(-50%, -50%) scale(1);
@@ -374,7 +377,7 @@
 
 .modal__list {
   li {
-    color: #333;
+    color: #000;
     padding: 0.5rem;
 
     &:not(:last-child) {
