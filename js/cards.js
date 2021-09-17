@@ -23,7 +23,6 @@ const searchData = (data) => {
         item.title.includes(searchInput) || item.body.includes(searchInput)
     );
 
-    gridDOM.innerHTML = "";
     displayCards(filteredPosts);
   });
 };
@@ -66,7 +65,7 @@ const displayCards = (data) => {
     `;
     })
     .join("");
-
+ 
   gridDOM.innerHTML = htmlStringCard;
   containerDOM.appendChild(gridDOM);
 };
