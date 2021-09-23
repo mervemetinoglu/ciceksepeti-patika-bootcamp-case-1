@@ -13,18 +13,34 @@ const options = {
 
 let posts = [];
 
+const debounce = (func, wait) => {
+  let timeout;
+
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+};
+
 const searchData = (data) => {
-  searchBar.addEventListener("keyup", (e) => {
-    let searchInput = e.target.value;
-    searchInput = searchInput.toLowerCase();
+  searchBar.addEventListener(
+    "keyup",
+    debounce((e) => {
+      let searchInput = e.target.value;
+      searchInput = searchInput.toLowerCase();
 
-    const filteredPosts = data.filter(
-      (item) =>
-        item.title.includes(searchInput) || item.body.includes(searchInput)
-    );
+      const filteredPosts = data.filter(
+        (item) =>
+          item.title.includes(searchInput) || item.body.includes(searchInput)
+      );
 
-    displayCards(filteredPosts);
-  });
+      displayCards(filteredPosts);
+    }, 300)
+  );
 };
 
 // Get mock data from api
@@ -40,13 +56,10 @@ const getData = (postsAPI, options) => {
 
 // Create and display grid layout in html
 const displayCards = (data) => {
-  // const dom = document.createElement("div");
-  // dom.classList.add("grid");
-
   const htmlStringCard = data
     .filter((item, index) => index < 10)
     .map((item, index) => {
-      let random = Math.floor(Math.random());
+      let random = Math.random();
 
       return `
             <div class="grid__item">
@@ -65,7 +78,7 @@ const displayCards = (data) => {
     `;
     })
     .join("");
- 
+
   gridDOM.innerHTML = htmlStringCard;
   containerDOM.appendChild(gridDOM);
 };
